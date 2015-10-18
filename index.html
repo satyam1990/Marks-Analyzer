@@ -1,0 +1,166 @@
+<html>
+
+<head>
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="DataTables-1.10.9/media/css/jquery.dataTables.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/css/bootstrap.css">
+
+<!-- My custom CSS -->
+<link rel="stylesheet" type="text/css" href="my.css">
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.9/media/js/jquery.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.9/media/js/jquery.dataTables.js"></script>
+
+<!-- JPanel Menu -->
+<script type="text/javascript" charset="utf8" src="jquery.jpanelmenu.js"></script>
+
+<!-- Bootstrap js -->
+<script type="text/javascript" charset="utf8" src="bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+
+<!-- HighChart js -->
+<script type="text/javascript" charset="utf8" src="Highcharts-4.1.8/js/highcharts.js"></script>
+<script type="text/javascript" charset="utf8" src="Highcharts-4.1.8/js/modules/exporting.js"></script>
+
+<!-- My custom js -->
+<script type="text/javascript" charset="utf8" src="my.js"></script>
+</head>
+
+<body>
+
+<!-- Opens up the Jpanel Menu Items -->
+<div id="container" class="container-fluid">
+	<div id="head_section">
+		<div class="panel panel-primary">
+			<div class="panel-heading link" onclick="load_project_home()">Marks Analyzer | Project</div>
+				<div class="panel-body">
+                			<div class="menu-trigger"><a href="#" class="glyphicon glyphicon-th-list"></a>
+					</div>
+            			</div>
+        		</div>
+		</div>
+	</div>
+	<div id="menu" style="display: none;" class="list-group">
+		<a class="list-group-item" href="#" onclick="student_detail_clicked()">Student Details</a>
+		<a class="list-group-item" href="#" onclick="report_card_clicked()">Report Card</a>
+	</div>
+</div>
+
+<div id="home" class="center">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+    			<h3 class="panel-title">About Marks Analyzer</h3>
+  		</div>
+  		<div class="panel-body">
+			A web app to enter student details and generate the report cards.
+		</div>
+	</div>
+</div>
+
+<div id="student_detail_tab" class="center">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+    			<h3 class="panel-title">Enter Student Details:</h3>
+  		</div>
+  		<div class="panel-body">
+			<form id="entry_form">
+				<div class="form-group">
+					<div class="row">
+						<div class="form-group col-xs-2 col-md-2">
+							<label for="firstName">First Name:</label>
+						</div>
+						<div class="form-group col-xs-6 col-md-4">
+							<input type="text" name="fname" class="form-control" id="firstName" placeholder="First Name" />
+						</div>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="row">
+						<div class="form-group col-xs-2 col-md-2">
+							<label for="lastName">Last Name:</label>
+						</div>
+						<div class="form-group col-xs-6 col-md-4">
+							<input type="text" name="lname" class="form-control" id="firstName" placeholder="Last Name" />
+						</div>
+					</div>
+				</div>
+
+				<table id="input_table" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<td>Subject</td>
+							<td>Marks Obtained</td>
+							<td>Maximum Marks</td>
+							<td>Percentage (%)</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr id=1>
+							<div class="form-group">
+							<td><input class="form-control" onfocus="set_current_row(this)" type="text" name="subject" /></td>
+							<td><input class="form-control" onfocus="set_current_row(this)" type="text" name="marks_obtained" /></td>
+							<td><input class="form-control" onfocus="set_current_row(this)" type="text" name="max_marks" /></td>
+							<td><input class="form-control" onfocus="set_current_row(this)" type="text" name="percentage" readonly="true" /></td>
+							</div>
+						</tr>
+					</tbody>
+				</table>
+
+				<br />
+				<input type="button" id="add_button" value="Add" class="btn btn-success" />
+				<input type="button" id="remove_button" value="Remove" class="btn btn-danger" />
+
+				<br />
+				<br />
+				<input type="button" id="submit_button" value="Submit" class="btn btn-primary" />
+			</form>
+		</div>
+	</div>
+
+	<div id="student_detail_panel" class="panel panel-default">
+		<div class="panel-heading">
+    			<h3 class="panel-title">Student Details:</h3>
+  		</div>
+  		<div class="panel-body">
+			<table id="table_id" class="display table"></table>
+		</div>
+	</div>
+</div>
+
+<div id="report_card_tab">
+	<div id="empty" class="center">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+    				<h3 class="panel-title">No Data to display charts!</h3>
+  			</div>
+  			<div class="panel-body alert alert-warning">
+				Data not yet entered in the application.
+			</div>
+		</div>
+	</div>
+	<div id="default">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+    				<h3 class="panel-title">Report Card</h3>
+  			</div>
+  			<div class="panel-body alert alert-warning">
+				<div class="row">
+					<div class="col-md-6" id="average_marks_bar"></div>
+					<div class="col-md-6" id="student_per_subject_pie"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="compare">
+	</div>
+</div>
+</body>
+</html>
+
