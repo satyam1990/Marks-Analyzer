@@ -56,6 +56,8 @@ function remove_button_clicked()
 	if (rows.length > 1)
 	{
 		rows.last().remove();
+		// decrement row_id
+		row_id--;
 	}
 }
 
